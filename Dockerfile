@@ -11,6 +11,7 @@ RUN apt-get update && \
   curl -L "https://github.com/devicehive/devicehive-admin-console/archive/development.tar.gz" | tar -zxf - --strip-components=1 && \
   apt-get clean
 
+ADD upstream.d/ /etc/nginx/upstream.d/
 ADD location.d/ /etc/nginx/location.d/
 
 COPY proxy-start.sh /opt/devicehive/
