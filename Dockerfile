@@ -1,4 +1,4 @@
-FROM nginx:1.13.6
+FROM nginx:1.13.7
 
 RUN mkdir /etc/nginx/location.d
 ADD nginx.conf /etc/nginx/nginx.conf
