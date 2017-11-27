@@ -13,6 +13,8 @@ RUN apt-get update && \
 
 ADD upstream.d/ /etc/nginx/upstream.d/
 ADD location.d/ /etc/nginx/location.d/
+ADD upstreams-available/ /etc/nginx/upstreams-available/
+ADD locations-available/ /etc/nginx/locations-available/
 
 COPY proxy-start.sh /opt/devicehive/
 
