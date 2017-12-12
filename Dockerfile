@@ -1,5 +1,13 @@
 FROM nginx:1.13.7
 
+ENV DH_PROXY_VERSION="3.4.2"
+
+LABEL org.label-schema.url="https://devicehive.com" \
+      org.label-schema.vendor="DeviceHive" \
+      org.label-schema.vcs-url="https://github.com/devicehive/devicehive-proxy" \
+      org.label-schema.name="devicehive-proxy" \
+      org.label-schema.version="$DH_PROXY_VERSION"
+
 RUN mkdir /etc/nginx/location.d
 ADD nginx.conf /etc/nginx/nginx.conf
 
