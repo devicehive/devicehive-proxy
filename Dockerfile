@@ -24,6 +24,8 @@ ADD location.d/ /etc/nginx/location.d/
 ADD upstreams-available/ /etc/nginx/upstreams-available/
 ADD locations-available/ /etc/nginx/locations-available/
 
+RUN mkdir /etc/nginx/stream.d/
+
 COPY proxy-start.sh /opt/devicehive/
 
 WORKDIR /opt/devicehive/
