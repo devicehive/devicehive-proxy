@@ -8,7 +8,7 @@ node('docker') {
   stage('Build and publish Docker images in CI repository') {
     checkout scm
     echo 'Building image ...'
-    def DevicehiveProxy = docker.build('devicehiveci/devicehive-proxy:${BRANCH_NAME}', '-f Dockerfile .')
+    def DevicehiveProxy = docker.build('devicehiveci/devicehive-proxy:${BRANCH_NAME}', '--pull -f Dockerfile .')
 
     echo 'Pushing image to CI repository ...'
     docker.withRegistry('https://registry.hub.docker.com', 'devicehiveci_dockerhub'){
