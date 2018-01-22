@@ -1,6 +1,6 @@
 FROM nginx:1.13.8
 
-ENV DH_PROXY_VERSION="3.4.2-next"
+ENV DH_PROXY_VERSION="3.4.3"
 
 LABEL org.label-schema.url="https://devicehive.com" \
       org.label-schema.vendor="DeviceHive" \
@@ -16,7 +16,7 @@ RUN apt-get update && \
   apt-get install -y curl && \
   mkdir -p /opt/devicehive/admin && \
   cd /opt/devicehive/admin && \
-  curl -L "https://github.com/devicehive/devicehive-admin-console/archive/3.4.0.tar.gz" | tar -zxf - --strip-components=1 && \
+  curl -L "https://github.com/devicehive/devicehive-admin-console/archive/stable.tar.gz" | tar -zxf - --strip-components=1 && \
   apt-get clean
 
 ADD upstream.d/ /etc/nginx/upstream.d/
