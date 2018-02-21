@@ -5,8 +5,26 @@ properties([
 def publishable_branches = ["development", "master"]
 
 node('docker') {
+  withEnv(["npm_config_cache=$WORKSPACE/.npm"]){
+    stage('Build devicehive-admin-panel') {
+      def node = docker.image('node:9')
+      node.pull()
+      node.inside {
+        git url: "https://github.com/devicehive/devicehive-admin-panel.git", branch: "development"
+        sh '''
+          npm install
+          npm run build-dev -- --base-href=/admin-angular/
+          rm -rf admin-angular
+          mv -T dist admin-angular
+        '''
+        def artifacts = 'admin-angular/**'
+        stash includes: artifacts, name: 'dist'
+       }
+    }
+  }
   stage('Build and publish Docker images in CI repository') {
     checkout scm
+    unstash 'dist'
     echo 'Building image ...'
     def DevicehiveProxy = docker.build('devicehiveci/devicehive-proxy:${BRANCH_NAME}', '--pull -f Dockerfile .')
 
