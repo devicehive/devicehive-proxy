@@ -1,4 +1,4 @@
-FROM nginx:1.13.8
+FROM nginx:1.13.9
 
 ENV DH_PROXY_VERSION="3.4.3-next"
 
