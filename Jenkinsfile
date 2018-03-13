@@ -13,11 +13,11 @@ node('docker') {
         git url: "https://github.com/devicehive/devicehive-admin-panel.git", branch: "development"
         sh '''
           npm install
-          npm run build-dev -- --base-href=/admin-angular/
-          rm -rf admin-angular
-          mv -T dist admin-angular
+          npm run build-dev -- --base-href=/admin/
+          rm -rf admin
+          mv -T dist admin
         '''
-        def artifacts = 'admin-angular/**'
+        def artifacts = 'admin/**'
         stash includes: artifacts, name: 'dist'
        }
     }

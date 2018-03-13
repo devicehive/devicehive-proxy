@@ -11,20 +11,12 @@ LABEL org.label-schema.url="https://devicehive.com" \
 RUN mkdir /etc/nginx/location.d
 ADD nginx.conf /etc/nginx/nginx.conf
 
-# Add admin console
-RUN apt-get update && \
-  apt-get install -y curl && \
-  mkdir -p /opt/devicehive/admin && \
-  cd /opt/devicehive/admin && \
-  curl -L "https://github.com/devicehive/devicehive-admin-console/archive/3.4.4.tar.gz" | tar -zxf - --strip-components=1 && \
-  apt-get clean
-
 ADD upstream.d/ /etc/nginx/upstream.d/
 ADD location.d/ /etc/nginx/location.d/
 ADD upstreams-available/ /etc/nginx/upstreams-available/
 ADD locations-available/ /etc/nginx/locations-available/
 
-ADD admin-angular/ /opt/devicehive/admin-angular/
+ADD admin/ /opt/devicehive/admin/
 
 RUN mkdir /etc/nginx/stream.d/
 
