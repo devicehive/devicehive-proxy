@@ -11,9 +11,19 @@ node('docker') {
       node.pull()
       node.inside {
         git url: "https://github.com/devicehive/devicehive-admin-panel.git", branch: "development"
+
+        writeFile file: 'src/environments/environment.prod.ts', text: """export const environment = {
+        production: true,
+        autoUpdateSession: true,
+        mainServiceURL: '/api/rest',
+        authServiceURL: '/auth/rest',
+        pluginServiceURL: '/plugin/rest'
+        };
+        """
+
         sh '''
           npm install
-          npm run build-dev -- --base-href=/admin/
+          npm run build -- --base-href=/admin/
           rm -rf admin
           mv -T dist admin
         '''
