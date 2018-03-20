@@ -10,8 +10,7 @@ node('docker') {
       def node = docker.image('node:9')
       node.pull()
       node.inside {
-        git url: "https://github.com/devicehive/devicehive-admin-panel.git", branch: "development"
-
+        sh('curl -L "https://github.com/devicehive/devicehive-admin-panel/archive/1.0.0.tar.gz" | tar -zxf - --strip-components=1')
         writeFile file: 'src/environments/environment.prod.ts', text: """export const environment = {
         production: true,
         autoUpdateSession: true,
