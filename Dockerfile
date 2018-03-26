@@ -8,6 +8,10 @@ LABEL org.label-schema.url="https://devicehive.com" \
       org.label-schema.name="devicehive-proxy" \
       org.label-schema.version="$DH_PROXY_VERSION"
 
+RUN apt-get update && \
+  apt-get install -y openssl && \
+  rm -rf /var/lib/apt/lists/*
+
 RUN mkdir /etc/nginx/location.d
 ADD nginx.conf /etc/nginx/nginx.conf
 
