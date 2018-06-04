@@ -12,9 +12,9 @@ RUN apt-get update && \
   apt-get install -y openssl && \
   rm -rf /var/lib/apt/lists/*
 
-RUN mkdir /etc/nginx/location.d
 ADD nginx.conf /etc/nginx/nginx.conf
 
+ADD server.d/ /etc/nginx/server.d/
 ADD upstream.d/ /etc/nginx/upstream.d/
 ADD location.d/ /etc/nginx/location.d/
 ADD upstreams-available/ /etc/nginx/upstreams-available/
