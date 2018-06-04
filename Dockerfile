@@ -1,6 +1,6 @@
 FROM nginx:1.14.0
 
-ENV DH_PROXY_VERSION="3.4.5-next"
+ENV DH_PROXY_VERSION="3.5.0"
 
 LABEL org.label-schema.url="https://devicehive.com" \
       org.label-schema.vendor="DeviceHive" \
