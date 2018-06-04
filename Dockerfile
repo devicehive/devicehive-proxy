@@ -8,21 +8,17 @@ LABEL org.label-schema.url="https://devicehive.com" \
       org.label-schema.name="devicehive-proxy" \
       org.label-schema.version="$DH_PROXY_VERSION"
 
-RUN apt-get update && \
-  apt-get install -y openssl && \
-  rm -rf /var/lib/apt/lists/*
-
 ADD nginx.conf /etc/nginx/nginx.conf
 
-ADD server.d/ /etc/nginx/server.d/
 ADD upstream.d/ /etc/nginx/upstream.d/
 ADD location.d/ /etc/nginx/location.d/
+ADD server-available/ /etc/nginx/server-available/
 ADD upstreams-available/ /etc/nginx/upstreams-available/
 ADD locations-available/ /etc/nginx/locations-available/
 
 ADD admin/ /opt/devicehive/admin/
 
-RUN mkdir /etc/nginx/stream.d/
+RUN mkdir /etc/nginx/stream.d/ /etc/nginx/server.d/
 
 COPY proxy-start.sh /opt/devicehive/
 
