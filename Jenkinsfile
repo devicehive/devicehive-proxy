@@ -16,7 +16,10 @@ node('docker') {
         autoUpdateSession: true,
         mainServiceURL: '/api/rest',
         authServiceURL: '/auth/rest',
-        pluginServiceURL: '/plugin/rest'
+        pluginServiceURL: '/plugin/rest',
+        facebookAppId: '',
+        githubClientId: '',
+        googleClientId: '',
         };
         """
 
