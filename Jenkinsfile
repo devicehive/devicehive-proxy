@@ -35,7 +35,7 @@ node('docker') {
     checkout scm
     unstash 'dist'
     echo 'Building image ...'
-    def DevicehiveProxy = docker.build('devicehiveci/devicehive-proxy:${BRANCH_NAME}', '--pull -f Dockerfile .')
+    def DevicehiveProxy = docker.build("devicehiveci/devicehive-proxy:${BRANCH_NAME}", '--pull -f Dockerfile .')
 
     echo 'Pushing image to CI repository ...'
     docker.withRegistry('https://registry.hub.docker.com', 'devicehiveci_dockerhub'){
